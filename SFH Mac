@@ -1,0 +1,24 @@
+#!/bin/bash
+# Use bash as all Macs have bash
+
+# Make no assumptions about user configuration
+# Use absolute paths
+# If using Windows text editor, MUST enable Unix compatibility
+
+# Ensure no previous server running
+pkill -f "Python -m SimpleHTTPServer"
+
+cd /Volumes/Historian
+
+# All Macs have Python
+# Run server and return to script
+python -m SimpleHTTPServer >/dev/null 2>&1 &
+
+# Open web page
+python -mwebbrowser http://localhost:8000/SFH.htm
+
+# Terminate cleanly when user has finished
+read -p "Press Enter key when finished with SFHG Historian"
+
+# Kill server
+pkill -f "Python -m SimpleHTTPServer"
